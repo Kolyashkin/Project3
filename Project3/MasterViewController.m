@@ -8,6 +8,7 @@
 
 #import "MasterViewController.h"
 #import "DetailViewController.h"
+#import "Event.h"
 
 @interface MasterViewController ()
 
@@ -36,24 +37,24 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-/*                  This is to be invoked on "ADD" from the view that will take info from the user...
-- (void)insertNewObject:(id)sender {
-    if (!thingsToDo) {
+
+- (void)insertNewObject:(id)sender {            // This is the next big step. This should segue to a new view with fields to
+    if (!thingsToDo) {                          // fill in the info....
         thingsToDo = [[NSMutableArray alloc] init];
     }
     
-    [thingsToDo insertObject:[NSDate date] atIndex:0];
+    [thingsToDo insertObject:[Event newEvent:@"testName" location:@"testLocation" date:[NSDate date] startTime:@"testStart" endTime:@"testEnd"] atIndex:0];
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
     [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
-*/
-#pragma mark - Segues
 
+#pragma mark - Segues
+// Very similar to the other demos, except our detail item is an Event object.
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:@"showDetail"]) {
         
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        NSString *object = thingsToDo[indexPath.row];
+        Event *object = thingsToDo[indexPath.row];
         DetailViewController *controller = (DetailViewController *)[[segue destinationViewController] topViewController];
         [controller setDetailItem:object];
         controller.navigationItem.leftBarButtonItem = self.splitViewController.displayModeButtonItem;
@@ -62,7 +63,7 @@
 }
 
 #pragma mark - Table View
-
+// Everything below here is used for the master table view and works fine.
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
@@ -73,9 +74,10 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
-
-    NSString *object = thingsToDo[indexPath.row];
-    cell.textLabel.text = [object description];
+    
+    Event *thisEvent = thingsToDo[indexPath.row];
+    
+    cell.textLabel.text = thisEvent.name;
     return cell;
 }
 

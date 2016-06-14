@@ -11,6 +11,7 @@
 @implementation Event
 +(Event *)newEvent: (NSString *)name location:(NSString *)location date:(NSDate *)date startTime:(NSString *)startTime
            endTime:(NSString *)endTime{
+    
     Event *event = [[Event alloc] init];
     event.name = name;
     event.location = location;
