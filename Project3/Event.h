@@ -12,8 +12,8 @@
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSString *location;
 @property (nonatomic, strong) NSDate *date;
-@property (nonatomic, strong) NSString *startTime;
-@property (nonatomic, strong) NSString *endTime;
+@property (nonatomic, strong) NSDate *startTime;
+@property (nonatomic, strong) NSDate *endTime;
 
 +(Event *)newEvent: (NSString *)name location:(NSString *)location date:(NSDate *)date startTime:(NSString *)startTime
     endTime:(NSString *)endTime;
