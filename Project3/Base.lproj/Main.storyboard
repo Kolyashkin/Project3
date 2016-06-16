@@ -105,7 +105,7 @@
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
-                                    <segue destination="vC3-pB-5Vb" kind="showDetail" identifier="showDetail" id="d5K-TZ-v9N"/>
+                                    <segue destination="vC3-pB-5Vb" kind="showDetail" identifier="showDetail" id="AOY-7O-rqx"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -278,6 +278,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="d5K-TZ-v9N"/>
+        <segue reference="AOY-7O-rqx"/>
     </inferredMetricsTieBreakers>
 </document>

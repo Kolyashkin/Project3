@@ -74,14 +74,29 @@
     
     
     if (indexPath.section == 0)
-        cell.textLabel.text = [_firstSection objectAtIndex:indexPath.row];
-    
+    {
+        if (indexPath.row == 0)
+            cell.textLabel.text = [@"Event: " stringByAppendingString:[_firstSection objectAtIndex:indexPath.row]];
+        else
+            cell.textLabel.text = [@"Location: " stringByAppendingString:[_firstSection objectAtIndex:indexPath.row]];
+    }
     if (indexPath.section == 1)
-        cell.textLabel.text = dateString;
-    
+    {
+        cell.textLabel.text = [@"Date: " stringByAppendingString:dateString];
+        //cell.backgroundColor = [UIColor cyanColor];
+    }
     if (indexPath.section == 2)
-        cell.textLabel.text = [_secondSection objectAtIndex:indexPath.row];
-    
+    {
+        if (indexPath.row == 0)
+        {
+            cell.textLabel.text = [@"Start time: " stringByAppendingString:[_secondSection objectAtIndex:indexPath.row]];
+        }
+        else
+        {
+            cell.textLabel.text = [@"End time: " stringByAppendingString:[_secondSection objectAtIndex:indexPath.row]];
+        }
+        
+    }
     return cell;
 }
 
