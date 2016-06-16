@@ -8,6 +8,7 @@
 
 #import "DetailViewController.h"
 #import "Event.h"
+
 @interface DetailViewController ()
 
 @end
@@ -47,7 +48,6 @@
     return 0;
 }
 
-// I'm still working on pretty-ing this up, maybe headers or different colored backgrounds.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell2";
@@ -59,21 +59,26 @@
     [_firstSection addObject:thisEvent.name];
     [_firstSection addObject:thisEvent.location];
     
-    // And these two as well
-    [_secondSection addObject:thisEvent.startTime];
-    [_secondSection addObject:thisEvent.endTime];
-    
     // This part used to transform the Date to a String for use with setting the cell.textLabel.text
     NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd"];
     NSString *dateString = [dateFormatter stringFromDate:thisEvent.date];
+    
+    [dateFormatter setDateFormat:@"HH:mm"];
+    NSString *startTimeString = [dateFormatter stringFromDate:thisEvent.startTime];
+    
+    NSString *endTimeString = [dateFormatter stringFromDate:thisEvent.endTime];
+    
+    [_secondSection addObject:startTimeString];
+    [_secondSection addObject:endTimeString];
+    
     
     if (indexPath.section == 0)
         cell.textLabel.text = [_firstSection objectAtIndex:indexPath.row];
     
     if (indexPath.section == 1)
         cell.textLabel.text = dateString;
-
+    
     if (indexPath.section == 2)
         cell.textLabel.text = [_secondSection objectAtIndex:indexPath.row];
     

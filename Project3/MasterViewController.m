@@ -9,8 +9,9 @@
 #import "MasterViewController.h"
 #import "DetailViewController.h"
 #import "Event.h"
+#import "ViewController.h"
 
-@interface MasterViewController ()
+@interface MasterViewController () <ViewControllerDelegate>
 
 
 @end
@@ -22,8 +23,6 @@
     // Do any additional setup after loading the view, typically from a nib.
     self.navigationItem.leftBarButtonItem = self.editButtonItem;
 
-    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
-    self.navigationItem.rightBarButtonItem = addButton;
     self.detailViewController = (DetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
     self.title = @"Add a to-do...";
 }
@@ -38,12 +37,10 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)insertNewObject:(id)sender {            // This is the next big step. This should segue to a new view with fields to
     if (!thingsToDo) {                          // fill in the info....
         thingsToDo = [[NSMutableArray alloc] init];
     }
     
-    [thingsToDo insertObject:[Event newEvent:@"testName" location:@"testLocation" date:[NSDate date] startTime:@"testStart" endTime:@"testEnd"] atIndex:0];
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
     [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
